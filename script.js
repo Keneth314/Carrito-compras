@@ -3,25 +3,27 @@ const desktop_menu = document.querySelector("div.desktop-menu")
 const burger_img = document.querySelector("img.menu")
 const mobile_menu = document.querySelector("div.mobile-menu")
 const car_img = document.querySelector("li.navbar-shopping-cart")
+const cart_detail = document.querySelector("aside.cart-detail")
 const product_detail = document.querySelector("aside.product-detail")
+const close_img = document.querySelector(".product-detail-close")
 const body = document.querySelector("body")
-
 
 navbar_email.addEventListener("click", function(){toggleVisibleDesktopMenu()})
 burger_img.addEventListener("click", toggleVisibleMobileMenu)
-car_img.addEventListener("click", function(){toggleVisibleProductDetail()})
-
+car_img.addEventListener("click", function(){toggleVisibleCartDetail()})
+close_img.addEventListener("click", closeProductDetail)
 
 
 // -----------FUNCIONES-----------------
 function toggleVisibleDesktopMenu(){
     product_detail.classList.add("invisible")
+    cart_detail.classList.add("invisible")
     desktop_menu.classList.toggle("invisible")
 }
 
-
 function toggleVisibleMobileMenu(){
     mobile_menu.classList.remove("invisible")
+    cart_detail.classList.add("invisible")
     product_detail.classList.add("invisible")
     if(mobile_menu.classList.contains("mobile-menu_show") === false){
         mobile_menu.classList.add("mobile-menu_show")
@@ -30,40 +32,55 @@ function toggleVisibleMobileMenu(){
         mobile_menu.classList.toggle("mobile-menu_hide")
     }
     // Reinicio de ProductDetail
-    product_detail.classList.remove("product-detail_show")
-    product_detail.classList.remove("product-detail_hide")
+    cart_detail.classList.remove("cart-detail_show")
+    cart_detail.classList.remove("cart-detail_hide")
 }
 
-function toggleVisibleProductDetail() {
-    
-    mobile_menu.classList.add("invisible")
+function toggleVisibleCartDetail() {
+    product_detail.classList.add("invisible")
     desktop_menu.classList.add("invisible")
     if(screen.width <= 768){
-        if(product_detail.classList.contains("product-detail_show") === false){
-            product_detail.classList.remove("invisible")
-            product_detail.classList.remove("product-detail_hide")
-            product_detail.classList.toggle("product-detail_show")
+        if(cart_detail.classList.contains("cart-detail_show") === false){
+            cart_detail.classList.remove("invisible")
+            cart_detail.classList.remove("cart-detail_hide")
+            cart_detail.classList.toggle("cart-detail_show")
 
         }
         else{
-            product_detail.classList.remove("product-detail_show")
-            product_detail.classList.toggle("product-detail_hide")
+            cart_detail.classList.remove("cart-detail_show")
+            cart_detail.classList.toggle("cart-detail_hide")
         }
         // Reinicio de menu_mobile
         mobile_menu.classList.remove("mobile-menu_show")
         mobile_menu.classList.remove("mobile-menu_hide")
     }
     else{
-        
-        product_detail.classList.remove("product-detail_hide")
-        product_detail.classList.remove("product-detail_show")
-        product_detail.classList.toggle("invisible")  
+        mobile_menu.classList.add("invisible")
+        cart_detail.classList.remove("cart-detail_hide")
+        cart_detail.classList.remove("cart-detail_show")
+        cart_detail.classList.toggle("invisible")  
     }
     console.log(screen.width)
     
 }
 
-const uwu = "https://assets.adidas.com/images/h_840,f_auto,q_auto,fl_lossy,c_fill,g_auto/8ea578f6c07847fca2d0ac85011d7f1f_9366/Tenis_para_Mountain_Bike_Five_Ten_Freerider_Negro_FW2835_01_standard.jpg"
+function VisibleProductDetail(image){
+    // const product_detail_img = document.querySelector("aside.product-detail #product-detail-img")
+    // product_detail_img.setAttribute("src", image)
+    console.log("Show Producto Detail")
+    cart_detail.classList.add("invisible")
+    desktop_menu.classList.add("invisible")
+    mobile_menu.classList.add("invisible")
+    product_detail.classList.remove("invisible")
+}
+
+function closeProductDetail(){
+    // (desktop_menu.classList.contains("invisible"))
+    product_detail.classList.add("invisible")
+}
+
+
+// Creando la lista de productos
 const productList = [];
 
 productList.push ({
@@ -120,7 +137,12 @@ for(product of productList){
     
     const productImg = document.createElement("img")
     productImg.setAttribute("src", product.image)
-    
+
+    // const product_card_img = document.querySelectorAll("div.product-card img")
+
+
+    productImg.addEventListener("click", function(){VisibleProductDetail(product.image)})
+
     const product_info = document.createElement("div")
     product_info.classList.add("product-info")
     
@@ -143,4 +165,9 @@ for(product of productList){
     productFigure.append(cartImg); 
     
 }
+
+
+
+
+
 

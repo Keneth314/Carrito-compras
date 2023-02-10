@@ -13,6 +13,7 @@
 
     <title>Carrito de compras</title>
     <link rel="stylesheet" href="style.css">
+    <!-- <link rel="shortcut icon" href="logos/logo_yard_sale.svg" type="image/x-icon"> -->
     
 </head>
 <body>
@@ -116,7 +117,7 @@
         </ul>
       </div>
 
-      <aside class="product-detail invisible">
+      <aside class="cart-detail invisible">
         <div class="title-container">
           <img src="./icons/flechita.svg" alt="arrow">
           <p class="title">My order</p>
@@ -163,13 +164,10 @@
         </div>
       </div>
       </aside>
-      
 
     </nav>
-    <main>
-      <!-- <h1>Hola, soy Keneth</h1> -->
-    </main>
 
+    <!-- Product list -->
     <section class="main-container">
       <div class="cards-container">
     
@@ -189,6 +187,33 @@
       </div>
     </section>
     
+
+    <aside class="product-detail invisible">
+      <div class="product-detail-close">
+        <img src="./icons/icon_close.png" alt="close">
+      </div>
+      <img id="product-detail-img" src="https://images.pexels.com/photos/276517/pexels-photo-276517.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="bike">
+      <div class="product-info product-info-detail">
+        <p>$35,00</p>
+        <p>Bike</p>
+        <p>With its practical position, this bike also fulfills a decorative function, add your hall or workspace.</p>
+        <button class="primary-button add-to-cart-button">
+          <img src="./icons/bt_add_to_cart.svg" alt="add to cart">
+          Add to cart
+        </button>
+      </div>
+    </aside>
+    
+
+    <!-- 
+      Cosas a arreglar:
+       La animacion de ocultar del carrito de ventas de mobile debe ser un desplazamiento hacia la derecha
+
+      Falta:
+      - Agregar productos al carrito
+      - Eliminar productos del carrito
+      
+     -->
 
     <script src="script.js"></script>
   </body>
