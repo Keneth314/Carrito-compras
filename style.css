@@ -18,18 +18,14 @@ body {
 .invisible {
     display: none;
 }
-
-.mobile-menu_show {
-    transform: translateX(100vw);
-    transition: transform 800ms;
+.no-scroll{
+    overflow: hidden;
+}
+.vertical-scroll{
+    overflow-y: scroll;
 }
 
-.mobile-menu_hide {
-    transform: translateX(-100vw);
-    transition: transform 1300ms;
-}
-
-.cart-detail_show {
+/* .cart-detail_show {
     visibility: visible;
     animation: fadeIn 1100ms;
 }
@@ -45,7 +41,7 @@ body {
 @keyframes fadeOut {
     from {opacity: 1;}
     to {opacity: 0;}
-}
+} */
 /* ----------------------------------------------------- */
 
 /* Navigation bar */
@@ -185,11 +181,21 @@ body {
     padding: 24px;
     /* padding-left: 0; */
     position: absolute;
-    top: 60px;
+    top: 63px;
     left: -100vw;
     background-color: white;
     width: calc(100vw - 48px);
+    height: 100vh;
+    transition: transform 300ms;
+    overflow-y: scroll;
 }
+
+.mobile-menu_show{
+    transform: translateX(100vw);
+    transition: transform 300ms;
+
+}
+
 
 .mobile-menu a {
     text-decoration: none;
@@ -225,6 +231,7 @@ body {
 /* Desplegable detalle del carrito*/
 .cart-detail {
     width: 360px;
+    height: 100vh;
     padding: 24px;
     box-sizing: border-box;
     position: absolute;
@@ -248,6 +255,12 @@ body {
 .title {
     font-size: var(--lg);
     font-weight: bold;
+}
+
+.container-shopping-cart{
+    height: 50vh;
+    overflow-y: scroll;
+    padding-right: 20px;
 }
 
 .order {
@@ -458,7 +471,9 @@ div.product-info-detail{
 
 
 /* ----------------MEDIA QUERY---------------------------- */
-
+.cart-detail_show{
+    transform: translateX(-100vw);
+}
 @media (max-width: 768px) {
 
     /* navbar */
@@ -471,18 +486,20 @@ div.product-info-detail{
     .navbar-left ul, .navbar-email, div.desktop-menu {
         display: none;
     }
-    .mobile-menu{
-        top: 63px;
-    }
 
     /* Detalle del carrito */
     .cart-detail {
         right: 0;
+        right: -100vw;
         width: 100%;
         top: 63px;
         border-radius: 0;
         box-shadow: none;
+        transition: transform 300ms;
+        /* padding-top: 0; */
     }
+
+    
 
     /* lista de productos */
     .cards-container {
@@ -508,5 +525,9 @@ div.product-info-detail{
 @media (min-width: 769px) {
     div.mobile-menu {
         display: none;
+    }
+
+    .cart-detail_show{
+        transform: translateX(0);
     }
 }

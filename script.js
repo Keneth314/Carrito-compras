@@ -22,46 +22,40 @@ function toggleVisibleDesktopMenu(){
 }
 
 function toggleVisibleMobileMenu(){
-    mobile_menu.classList.remove("invisible")
     cart_detail.classList.add("invisible")
     product_detail.classList.add("invisible")
-    if(mobile_menu.classList.contains("mobile-menu_show") === false){
-        mobile_menu.classList.add("mobile-menu_show")
-    }
-    else{
-        mobile_menu.classList.toggle("mobile-menu_hide")
-    }
-    // Reinicio de ProductDetail
+
+    // Reiniciar cart_detail
     cart_detail.classList.remove("cart-detail_show")
-    cart_detail.classList.remove("cart-detail_hide")
+
+    mobile_menu.classList.remove("invisible")
+    body.classList.toggle("no-scroll")
+    // mobile_menu.classList.add("vertical-scroll")
+    mobile_menu.classList.toggle("mobile-menu_show")
+
 }
 
 function toggleVisibleCartDetail() {
     product_detail.classList.add("invisible")
     desktop_menu.classList.add("invisible")
-    if(screen.width <= 768){
-        if(cart_detail.classList.contains("cart-detail_show") === false){
-            cart_detail.classList.remove("invisible")
-            cart_detail.classList.remove("cart-detail_hide")
-            cart_detail.classList.toggle("cart-detail_show")
+    mobile_menu.classList.add("invisible")
 
-        }
-        else{
-            cart_detail.classList.remove("cart-detail_show")
-            cart_detail.classList.toggle("cart-detail_hide")
-        }
-        // Reinicio de menu_mobile
-        mobile_menu.classList.remove("mobile-menu_show")
-        mobile_menu.classList.remove("mobile-menu_hide")
+    // Reiniciar mobile_menu
+    mobile_menu.classList.remove("mobile-menu_show")
+    body.classList.remove("no-scroll")
+
+    if(screen.width <= 768){
+        cart_detail.classList.remove("invisible")
+        cart_detail.classList.toggle("cart-detail_show")
+        // (body.classList.contains("no-scroll") === false) ? body.classList.add("no-scroll") : body.classList.remove("no-scroll");
+        // body.classList.toggle("no-scroll")
     }
     else{
         mobile_menu.classList.add("invisible")
-        cart_detail.classList.remove("cart-detail_hide")
         cart_detail.classList.remove("cart-detail_show")
         cart_detail.classList.toggle("invisible")  
     }
-    console.log(screen.width)
-    
+    // console.log(screen.width)
 }
 
 function VisibleProductDetail(image){
