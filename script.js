@@ -6,16 +6,21 @@ const car_img = document.querySelector("li.navbar-shopping-cart")
 const cart_detail = document.querySelector("aside.cart-detail")
 const product_detail = document.querySelector("aside.product-detail")
 const close_img = document.querySelector(".product-detail-close")
+const close_menu_mobile_img = document.querySelector("div.mobile-menu img")
 const body = document.querySelector("body")
 
-navbar_email.addEventListener("click", function(){toggleVisibleDesktopMenu()})
+const imagen = document.querySelector("#product-detail-img");
+const priceProduct = document.querySelector("#product-detail-price");
+
+navbar_email.addEventListener("click", function(){VisibleDesktopMenu()})
 burger_img.addEventListener("click", toggleVisibleMobileMenu)
 car_img.addEventListener("click", function(){toggleVisibleCartDetail()})
 close_img.addEventListener("click", closeProductDetail)
+close_menu_mobile_img.addEventListener("click", InvisibleMobileMenu)
 
 
 // -----------FUNCIONES-----------------
-function toggleVisibleDesktopMenu(){
+function VisibleDesktopMenu(){
     product_detail.classList.add("invisible")
     cart_detail.classList.add("invisible")
     desktop_menu.classList.toggle("invisible")
@@ -29,10 +34,16 @@ function toggleVisibleMobileMenu(){
     cart_detail.classList.remove("cart-detail_show")
 
     mobile_menu.classList.remove("invisible")
-    body.classList.toggle("no-scroll")
+    body.classList.add("no-scroll")
     // mobile_menu.classList.add("vertical-scroll")
-    mobile_menu.classList.toggle("mobile-menu_show")
+    // mobile_menu.classList.toggle("mobile-menu_show")
+    mobile_menu.classList.add("mobile-menu_show")
 
+}
+
+function InvisibleMobileMenu(){
+    body.classList.remove("no-scroll")
+    mobile_menu.classList.remove("mobile-menu_show")
 }
 
 function toggleVisibleCartDetail() {
@@ -41,14 +52,16 @@ function toggleVisibleCartDetail() {
     mobile_menu.classList.add("invisible")
 
     // Reiniciar mobile_menu
-    mobile_menu.classList.remove("mobile-menu_show")
-    body.classList.remove("no-scroll")
+    // mobile_menu.classList.remove("mobile-menu_show")
 
     if(screen.width <= 768){
         cart_detail.classList.remove("invisible")
+        // function uwu(){
+        // }
+        // setTimeout(uwu, 200)
+        // body.classList.toggle("no-scroll")
         cart_detail.classList.toggle("cart-detail_show")
         // (body.classList.contains("no-scroll") === false) ? body.classList.add("no-scroll") : body.classList.remove("no-scroll");
-        // body.classList.toggle("no-scroll")
     }
     else{
         mobile_menu.classList.add("invisible")
@@ -58,14 +71,36 @@ function toggleVisibleCartDetail() {
     // console.log(screen.width)
 }
 
-function VisibleProductDetail(image){
-    // const product_detail_img = document.querySelector("aside.product-detail #product-detail-img")
-    // product_detail_img.setAttribute("src", image)
-    console.log("Show Producto Detail")
-    cart_detail.classList.add("invisible")
-    desktop_menu.classList.add("invisible")
-    mobile_menu.classList.add("invisible")
+// function VisibleProductDetail(img, price, name){
+//     product_detail.classList.remove("invisible")
+//     console.log({img, price, name})
+
+//     const product_detail_img = document.querySelector("product-detail #product-detail-img")
+//     const product_detail_price = document.querySelector("product-detail #product-detail-price")
+//     const product_detail_name = document.querySelector("product-detail #product-detail-name")
+
+
+
+//     product_detail_img.src = "https://fastly.picsum.photos/id/1041/300/200.jpg?hmac=6ezBGCQFpwkQX8Q2X5IwixcAgYYpqAT-d_4rMaG-bu4"
+//     product_detail_price.innerText = price
+//     product_detail_name.innerText = name
+//     console.log({product_detail_img, product_detail_price, product_detail_name})
+
+
+
+//     cart_detail.classList.add("invisible")
+//     desktop_menu.classList.add("invisible")
+//     mobile_menu.classList.add("invisible")
+    
+
+// }
+
+function VisibleProductDetail(event){
+    console.log("MOSTRANDO!!!")
     product_detail.classList.remove("invisible")
+    imagen.setAttribute("src", event.target.src);
+    priceProduct.innerText = event.target.nextElementSibling.innerText; 
+
 }
 
 function closeProductDetail(){
@@ -134,9 +169,11 @@ for(product of productList){
 
     // const product_card_img = document.querySelectorAll("div.product-card img")
 
+    // Hacer visible el ProductDetail y le envio sus 
+    productImg.addEventListener("click", VisibleProductDetail);
 
-    productImg.addEventListener("click", function(){VisibleProductDetail(product.image)})
 
+    // creo los elementos restantes
     const product_info = document.createElement("div")
     product_info.classList.add("product-info")
     
@@ -152,6 +189,7 @@ for(product of productList){
     const cartImg = document.createElement("img")
     cartImg.setAttribute("src", "./icons/bt_add_to_cart.svg")
     
+    // Creo HTML
     cards_container.appendChild(product_card);
     product_card.append(productImg, product_info);
     product_info.append(product_div, productFigure);
@@ -159,9 +197,5 @@ for(product of productList){
     productFigure.append(cartImg); 
     
 }
-
-
-
-
 
 
