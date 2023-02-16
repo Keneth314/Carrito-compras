@@ -46,6 +46,15 @@ body {
 /* ----------------------------------------------------- */
 
 /* Navigation bar */
+/* .navbar-section{
+    width: 100%;
+    top: 0;
+    left: 0;
+    position: fixed;
+    background-color: white;
+    z-index: 7;
+} */
+
 .navbar-container {
     display: flex;
     justify-content: space-between;
@@ -93,6 +102,8 @@ body {
 .navbar-right ul li a:hover {
     border: 1px solid var(--hospital-green);
     color: var(--hospital-green);
+    cursor: pointer;
+    user-select: none;
 }
 
 .navbar-email {
@@ -532,7 +543,12 @@ div.product-info-detail{
     .product-detail {
         width: 100%;
         right: 0;
-        top: 63px;
+        /* top: 63px; */
+        top: 60px;
+    }
+    .product-detail>img:nth-child(2){
+        border-top-right-radius: 0;
+        border-top-left-radius: 0;
     }
 
 }

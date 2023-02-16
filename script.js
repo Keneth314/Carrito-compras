@@ -9,8 +9,10 @@ const close_img = document.querySelector(".product-detail-close")
 const close_menu_mobile_img = document.querySelector("div.mobile-menu img")
 const body = document.querySelector("body")
 
-const imagen = document.querySelector("#product-detail-img");
+const imgProduct = document.querySelector("#product-detail-img");
 const priceProduct = document.querySelector("#product-detail-price");
+
+const numberCart = document.querySelector(".navbar-shopping-cart div")
 
 navbar_email.addEventListener("click", function(){VisibleDesktopMenu()})
 burger_img.addEventListener("click", toggleVisibleMobileMenu)
@@ -51,9 +53,6 @@ function toggleVisibleCartDetail() {
     desktop_menu.classList.add("invisible")
     mobile_menu.classList.add("invisible")
 
-    // Reiniciar mobile_menu
-    // mobile_menu.classList.remove("mobile-menu_show")
-
     if(screen.width <= 768){
         cart_detail.classList.remove("invisible")
         // function uwu(){
@@ -71,36 +70,15 @@ function toggleVisibleCartDetail() {
     // console.log(screen.width)
 }
 
-// function VisibleProductDetail(img, price, name){
-//     product_detail.classList.remove("invisible")
-//     console.log({img, price, name})
-
-//     const product_detail_img = document.querySelector("product-detail #product-detail-img")
-//     const product_detail_price = document.querySelector("product-detail #product-detail-price")
-//     const product_detail_name = document.querySelector("product-detail #product-detail-name")
-
-
-
-//     product_detail_img.src = "https://fastly.picsum.photos/id/1041/300/200.jpg?hmac=6ezBGCQFpwkQX8Q2X5IwixcAgYYpqAT-d_4rMaG-bu4"
-//     product_detail_price.innerText = price
-//     product_detail_name.innerText = name
-//     console.log({product_detail_img, product_detail_price, product_detail_name})
-
-
-
-//     cart_detail.classList.add("invisible")
-//     desktop_menu.classList.add("invisible")
-//     mobile_menu.classList.add("invisible")
-    
-
-// }
-
 function VisibleProductDetail(event){
-    console.log("MOSTRANDO!!!")
-    product_detail.classList.remove("invisible")
-    imagen.setAttribute("src", event.target.src);
-    priceProduct.innerText = event.target.nextElementSibling.innerText; 
 
+    desktop_menu.classList.add("invisible")
+    cart_detail.classList.add("invisible")
+    mobile_menu.classList.add("invisible")
+
+    product_detail.classList.remove("invisible")
+    imgProduct.setAttribute("src", event.target.src);
+    priceProduct.innerText = event.target.nextElementSibling.innerText; 
 }
 
 function closeProductDetail(){
@@ -108,10 +86,65 @@ function closeProductDetail(){
     product_detail.classList.add("invisible")
 }
 
+function increaseCounter(event){
+    numberCart.innerText = Number(numberCart.innerText) + 1
+    console.log(event.target.tagName + "uwu")
+
+}
+
+
 
 // Creando la lista de productos
 const productList = [];
 
+productList.push ({
+    name:'Traje elegante rojo',
+    price: 3200,
+    image: 'img/ropa1.jpg',
+    description: ''
+});
+productList.push ({
+    name:'Pantalón aesthetic',
+    price: 1200,
+    image: 'img/ropa2.jpg',
+    description: ''
+});
+productList.push ({
+    name:'Tacones fantasía',
+    price: 2000,
+    image: 'img/ropa3.jpg',
+    description: ''
+});
+productList.push ({
+    name:'Suéter amarillo',
+    price: 1500,
+    image: 'img/ropa4.jpg',
+    description: ''
+});
+// productList.push ({
+//     name:'Vestido morado de gala',
+//     price: 300,
+//     image: 'img/ropa5.jpg',
+//     description: ''
+// });
+// productList.push ({
+//     name:'Tennis Montain Bike',
+//     price: 2200,
+//     image: 'img/ropa6.jpg',
+//     description: ''
+// });
+// productList.push ({
+//     name:'Sunglasses',
+//     price: 800,
+//     image: 'img/ropa7.jpg',
+//     description: ''
+// });
+// productList.push ({
+//     name:'Sunglasses',
+//     price: 600,
+//     image: 'img/ropa8.jpg',
+//     description: ''
+// });
 productList.push ({
     name:'Bike',
     price: 12700,
@@ -169,7 +202,7 @@ for(product of productList){
 
     // const product_card_img = document.querySelectorAll("div.product-card img")
 
-    // Hacer visible el ProductDetail y le envio sus 
+    // Hacer visible el ProductDetail y mostrar datos
     productImg.addEventListener("click", VisibleProductDetail);
 
 
@@ -189,6 +222,12 @@ for(product of productList){
     const cartImg = document.createElement("img")
     cartImg.setAttribute("src", "./icons/bt_add_to_cart.svg")
     
+    // Aumentar el contador del carrito
+    cartImg.addEventListener("click", () => {increaseCounter(element)})
+    // Agregar el producto al carrito
+
+
+
     // Creo HTML
     cards_container.appendChild(product_card);
     product_card.append(productImg, product_info);
@@ -198,4 +237,200 @@ for(product of productList){
     
 }
 
+//crea los productos en el menu
 
+
+// const showProductsOnScreen = (productList)=>{ 
+    
+//     productList.forEach(product => { //recorre cada elemento del arreglo
+
+//         const cards_container = document.querySelector(".cards-container")
+
+//         const product_card = document.createElement("div")
+//         product_card.classList.add("product-card")
+
+//         // product_card.addEventListener('click', ()=>{openProductInfo(product)})
+        
+//         const productImg = document.createElement("img")
+//         productImg.setAttribute("src", product.image)
+    
+//         // const product_card_img = document.querySelectorAll("div.product-card img")
+    
+//         // Hacer visible el ProductDetail y mostrar datos
+//         // productImg.addEventListener("click", VisibleProductDetail);
+    
+    
+//         // creo los elementos restantes
+//         const product_info = document.createElement("div")
+//         product_info.classList.add("product-info")
+        
+//         const product_div = document.createElement("div")
+        
+//         const productPrice = document.createElement("p")
+//         productPrice.innerText = "$ " + product.price
+//         const productName = document.createElement("p")
+//         productName.innerText = product.name
+        
+//         const productFigure = document.createElement("figure")
+        
+//         const cartImg = document.createElement("img")
+//         cartImg.setAttribute("src", "./icons/bt_add_to_cart.svg")
+        
+//         // Aumentar el contador del carrito
+//         // cartImg.addEventListener("click", () => {increaseCounter(element)})
+//         // Agregar el producto al carrito
+    
+//         // cartImg.addEventListener('click', ()=>{openProductInfo(product)})
+
+    
+//         // Creo HTML
+//         cards_container.appendChild(product_card);
+//         product_card.append(productImg, product_info);
+//         product_info.append(product_div, productFigure);
+//         product_div.append(productPrice, productName);
+//         productFigure.append(cartImg); 
+
+//         console.log("dsdfdf")
+        
+//     });
+// }
+
+//muestra el aside con la info del producto seleccionado
+// const openProductInfo = (product)=>{ 
+//     const aside = document.querySelector('.product-detail');
+//     const productImg = document.querySelector('#product-detail-img');
+//     const productPrice = document.querySelector('#product-detail-price');
+//     const productName= document.querySelector('#product-detail-name');
+    
+//     aside.classList.remove('invisible');
+//     productImg.setAttribute('src',product.img);
+//     productPrice.textContent= product.price;
+//     productName.textContent= product.name;
+
+
+// }
+
+// const add = document.querySelector(".product-card figure img")
+
+
+
+// --------------------------------------
+
+const section = document.querySelectorAll(".navbar-left ul li a")
+
+section[0].addEventListener("click", function(){
+    console.log("CLICK SECTION")
+    const cards_container = document.querySelector(".cards-container")
+    cards_container.innerHTML = ""
+
+    const clothesSection = [] 
+    for (let index = 0; index < productList.length; index++) {
+        clothesSection[index] = productList[index]        
+    }
+    renderProductList(clothesSection)
+})
+section[1].addEventListener("click", function(){
+    console.log("CLICK SECTION")
+    const cards_container = document.querySelector(".cards-container")
+    cards_container.innerHTML = ""
+
+    const clothesSection = [] 
+    for (let index = 0; index < 1; index++) {
+        clothesSection[index] = productList[index]        
+    }
+    renderProductList(clothesSection)
+})
+section[2].addEventListener("click", function(){
+    console.log("CLICK SECTION")
+    const cards_container = document.querySelector(".cards-container")
+    cards_container.innerHTML = ""
+
+    const clothesSection = [] 
+    for (let index = 0; index < 2; index++) {
+        clothesSection[index] = productList[index]        
+    }
+    renderProductList(clothesSection)
+})
+section[3].addEventListener("click", function(){
+    console.log("CLICK SECTION")
+    const cards_container = document.querySelector(".cards-container")
+    cards_container.innerHTML = ""
+
+    const clothesSection = [] 
+    for (let index = 0; index < 3; index++) {
+        clothesSection[index] = productList[index]        
+    }
+    renderProductList(clothesSection)
+})
+section[4].addEventListener("click", function(){
+    console.log("CLICK SECTION")
+    const cards_container = document.querySelector(".cards-container")
+    cards_container.innerHTML = ""
+
+    const clothesSection = [] 
+    for (let index = 0; index < 4; index++) {
+        clothesSection[index] = productList[index]        
+    }
+    renderProductList(clothesSection)
+})
+section[5].addEventListener("click", function(){
+    console.log("CLICK SECTION")
+    const cards_container = document.querySelector(".cards-container")
+    cards_container.innerHTML = ""
+
+    const clothesSection = [] 
+    for (let index = 0; index < 5; index++) {
+        clothesSection[index] = productList[index]        
+    }
+    renderProductList(clothesSection)
+})
+
+
+
+function renderProductList(randomList){
+    for(product of randomList){
+        const cards_container = document.querySelector(".cards-container")
+    
+        const product_card = document.createElement("div")
+        product_card.classList.add("product-card")
+        
+        const productImg = document.createElement("img")
+        productImg.setAttribute("src", product.image)
+    
+        // const product_card_img = document.querySelectorAll("div.product-card img")
+    
+        // Hacer visible el ProductDetail y mostrar datos
+        productImg.addEventListener("click", VisibleProductDetail);
+    
+    
+        // creo los elementos restantes
+        const product_info = document.createElement("div")
+        product_info.classList.add("product-info")
+        
+        const product_div = document.createElement("div")
+        
+        const productPrice = document.createElement("p")
+        productPrice.innerText = "$ " + product.price
+        const productName = document.createElement("p")
+        productName.innerText = product.name
+        
+        const productFigure = document.createElement("figure")
+        
+        const cartImg = document.createElement("img")
+        cartImg.setAttribute("src", "./icons/bt_add_to_cart.svg")
+        
+        // Aumentar el contador del carrito
+        cartImg.addEventListener("click", () => {increaseCounter(element)})
+        // Agregar el producto al carrito
+    
+    
+    
+        // Creo HTML
+        cards_container.appendChild(product_card);
+        product_card.append(productImg, product_info);
+        product_info.append(product_div, productFigure);
+        product_div.append(productPrice, productName);
+        productFigure.append(cartImg); 
+        
+    }
+}
