@@ -18,7 +18,7 @@ navbar_email.addEventListener("click", function(){VisibleDesktopMenu()})
 burger_img.addEventListener("click", toggleVisibleMobileMenu)
 car_img.addEventListener("click", function(){toggleVisibleCartDetail()})
 close_img.addEventListener("click", closeProductDetail)
-close_menu_mobile_img.addEventListener("click", InvisibleMobileMenu)
+close_menu_mobile_img.addEventListener("click", invisibleMobileMenu)
 
 
 // -----------FUNCIONES-----------------
@@ -43,7 +43,7 @@ function toggleVisibleMobileMenu(){
 
 }
 
-function InvisibleMobileMenu(){
+function invisibleMobileMenu(){
     body.classList.remove("no-scroll")
     mobile_menu.classList.remove("mobile-menu_show")
 }
@@ -76,9 +76,9 @@ function VisibleProductDetail(event){
     cart_detail.classList.add("invisible")
     mobile_menu.classList.add("invisible")
 
-    product_detail.classList.remove("invisible")
     imgProduct.setAttribute("src", event.target.src);
     priceProduct.innerText = event.target.nextElementSibling.innerText; 
+    product_detail.classList.remove("invisible")
 }
 
 function closeProductDetail(){
@@ -95,204 +95,318 @@ function increaseCounter(event){
 
 
 // Creando la lista de productos
-const productList = [];
+const productList = [
+    {
+        name: 'Traje elegante rojo',
+        price: 3200,
+        image: 'img/ropa1.jpg',
+        type: "Clothes",
+        description: ""
+    },
+    {
+        name: 'Pantalón aesthetic',
+        price: 1200,
+        image: 'img/ropa2.jpg',
+        type: "Clothes",
+        description: ""
+    },
+    {
+        name: 'Tacones fantasía',
+        price: 2000,
+        image: 'img/ropa3.jpg',
+        type: "Clothes",
+        description: ""
+    },
+    {
+        name: 'Suéter amarillo',
+        price: 1500,
+        image: 'img/ropa4.jpg',
+        type: "Clothes",
+        description: ""
+    },
+    {
+        name: 'Vestido morado de gala',
+        price: 300,
+        image: 'img/ropa5.jpg',
+        type: "Clothes",
+        description: ""
+    },
+    {
+        name: 'Tennis Montain Bike',
+        price: 2200,
+        image: 'img/ropa6.jpg',
+        type: "Clothes",
+        description: ""
+    },
+    {
+        name: 'Sunglasses',
+        price: 800,
+        image: 'img/ropa7.jpg',
+        type: "Clothes",
+        description: ""
+    },
+    {
+        name: 'Sunglasses',
+        price: 600,
+        image: 'img/ropa8.jpg',
+        type: "Clothes",
+        description: ""
+    },
+    {
+        name: 'Sunglasses',
+        price: 600,
+        image: 'img/ropa9.jpg',
+        type: "Clothes",
+        description: ""
+    },
+    {
+        name: 'Sunglasses',
+        price: 600,
+        image: 'img/ropa10.jpg',
+        type: "Clothes",
+        description: ""
+    },
+    {
+        name: 'Sunglasses',
+        price: 600,
+        image: 'img/ropa11.jpg',
+        type: "Clothes",
+        description: ""
+    },
+    {
+        name: 'Sunglasses',
+        price: 600,
+        image: 'img/ropa12.jpg',
+        type: "Clothes",
+        description: ""
+    },
+    {
+        name: 'Sunglasses',
+        price: 600,
+        image: 'img/ropa13.jpg',
+        type: "Clothes",
+        description: ""
+    },
+    {
+        name: 'Sunglasses',
+        price: 600,
+        image: 'img/ropa14.jpg',
+        type: "Clothes",
+        description: ""
+    },
+    {
+        name: 'Sunglasses',
+        price: 600,
+        image: 'img/ropa15.jpg',
+        type: "Clothes",
+        description: ""
+    },
+    {
+        name: 'Sunglasses',
+        price: 600,
+        image: 'img/ropa16.jpg',
+        type: "Clothes",
+        description: ""
+    },
 
-productList.push ({
-    name:'Traje elegante rojo',
-    price: 3200,
-    image: 'img/ropa1.jpg',
-    description: ''
-});
-productList.push ({
-    name:'Pantalón aesthetic',
-    price: 1200,
-    image: 'img/ropa2.jpg',
-    description: ''
-});
-productList.push ({
-    name:'Tacones fantasía',
-    price: 2000,
-    image: 'img/ropa3.jpg',
-    description: ''
-});
-productList.push ({
-    name:'Suéter amarillo',
-    price: 1500,
-    image: 'img/ropa4.jpg',
-    description: ''
-});
-// productList.push ({
-//     name:'Vestido morado de gala',
-//     price: 300,
-//     image: 'img/ropa5.jpg',
-//     description: ''
-// });
-// productList.push ({
-//     name:'Tennis Montain Bike',
-//     price: 2200,
-//     image: 'img/ropa6.jpg',
-//     description: ''
-// });
-// productList.push ({
-//     name:'Sunglasses',
-//     price: 800,
-//     image: 'img/ropa7.jpg',
-//     description: ''
-// });
-// productList.push ({
-//     name:'Sunglasses',
-//     price: 600,
-//     image: 'img/ropa8.jpg',
-//     description: ''
-// });
-productList.push ({
-    name:'Bike',
-    price: 12700,
-    image: 'https://fastly.picsum.photos/id/63/300/200.jpg?hmac=fIasgHoSbyiqE83FdjmxzRR2vjfUKDNktGG8MNuO_4Q'
-});
-productList.push ({
-    name:'Bicycle helmet',
-    price: 1200,
-    image: 'https://fastly.picsum.photos/id/1041/300/200.jpg?hmac=6ezBGCQFpwkQX8Q2X5IwixcAgYYpqAT-d_4rMaG-bu4'
-});
-productList.push ({
-    name:'Bicycle helmet',
-    price: 1600,
-    image: 'https://fastly.picsum.photos/id/650/300/200.jpg?hmac=nuRnzrByBYKU6fsTl1xwz3MIpNrNjb0PjLJA5ypiOqU'
-});
-productList.push ({
-    name:'Bicycle helmet',
-    price: 1500,
-    image: 'https://fastly.picsum.photos/id/1081/300/200.jpg?hmac=fbKeKxgZkfNvHihq19otFEq3XIIskrkKx0agOvAsFlI'
-});
-productList.push ({
-    name:'Seat',
-    price: 300,
-    image: 'https://fastly.picsum.photos/id/735/300/200.jpg?hmac=POPDKxfv7tiKB212bnTjx60t4vzSUAWxwjHeIimVHWg'
-});
-productList.push ({
-    name:'Tennis Montain Bike',
-    price: 2200,
-    image: 'https://fastly.picsum.photos/id/821/300/200.jpg?hmac=6IKXckQtVXfIh7pRXj7cxezrxH-zM2WAkCAcn2EGZao'
-});
-productList.push ({
-    name:'Sunglasses',
-    price: 800,
-    image: 'https://fastly.picsum.photos/id/430/300/200.jpg?hmac=MFV20dJJadnnbIqXebEtuv2S-6-zEEMQXzkP7UK3HKU'
-});
-productList.push ({
-    name:'Sunglasses',
-    price: 600,
-    image: 'https://fastly.picsum.photos/id/253/300/200.jpg?hmac=75Xcyfr-AhlvQYL85fVhv4SQ6xUrW1TiRnOzpAnlc1k'
-});
-productList.push ({
-    name:'Bicycle seat bag',
-    price: 876,
-    image: 'https://fastly.picsum.photos/id/59/300/200.jpg?hmac=NDge9tf7z_Kc8h3nccPRWXtXqV7kAjM93CMqRNN-3wU'
-}); 
+    //    ---------------------------
+    {
+        name: 'Traje elegante rojo',
+        price: 3200,
+        image: 'img/tecnologia1.jpg',
+        type: "Tecnology",
+        description: ""
+    },
+    {
+        name: 'Pantalón aesthetic',
+        price: 1200,
+        image: 'img/tecnologia2.jpg',
+        type: "Tecnology",
+        description: ""
+    },
+    {
+        name: 'Tacones fantasía',
+        price: 2000,
+        image: 'img/tecnologia3.jpg',
+        type: "Tecnology",
+        description: ""
+    },
+    {
+        name: 'Suéter amarillo',
+        price: 1500,
+        image: 'img/tecnologia4.jpg',
+        type: "Tecnology",
+        description: ""
+    },
+    {
+        name: 'Vestido morado de gala',
+        price: 300,
+        image: 'img/tecnologia5.jpg',
+        type: "Tecnology",
+        description: ""
+    },
+    {
+        name: 'Tennis Montain Bike',
+        price: 2200,
+        image: 'img/tecnologia6.jpg',
+        type: "Tecnology",
+        description: ""
+    },
+    {
+        name: 'Sunglasses',
+        price: 800,
+        image: 'img/tecnologia7.jpg',
+        type: "Tecnology",
+        description: ""
+    },
+    {
+        name: 'Sunglasses',
+        price: 600,
+        image: 'img/tecnologia8.jpg',
+        type: "Tecnology",
+        description: ""
+    },
+    {
+        name: 'Sunglasses',
+        price: 600,
+        image: 'img/tecnologia9.jpg',
+        type: "Tecnology",
+        description: ""
+    },
+    {
+        name: 'Sunglasses',
+        price: 600,
+        image: 'img/tecnologia10.jpg',
+        type: "Tecnology",
+        description: ""
+    },
+    {
+        name: 'uuw',
+        price: 600,
+        image: 'img/tecnologia11.jpg',
+        type: "Tecnology",
+        description: ""
+    },
 
-for(product of productList){
-    const cards_container = document.querySelector(".cards-container")
+    //    ---------------------------
+    {
+        name: 'Traje elegante rojo',
+        price: 3200,
+        image: 'img/mueble1.jpg',
+        type: "Furnitures",
+        description: ""
+    },
+    {
+        name: 'Pantalón aesthetic',
+        price: 1200,
+        image: 'img/mueble2.jpg',
+        type: "Furnitures",
+        description: ""
+    },
+    {
+        name: 'Tacones fantasía',
+        price: 2000,
+        image: 'img/mueble3.jpg',
+        type: "Furnitures",
+        description: ""
+    },
+    {
+        name: 'Suéter amarillo',
+        price: 1500,
+        image: 'img/mueble4.jpg',
+        type: "Furnitures",
+        description: ""
+    },
+    {
+        name: 'Vestido morado de gala',
+        price: 300,
+        image: 'img/mueble5.jpg',
+        type: "Furnitures",
+        description: ""
+    },
 
-    const product_card = document.createElement("div")
-    product_card.classList.add("product-card")
-    
-    const productImg = document.createElement("img")
-    productImg.setAttribute("src", product.image)
+    //    ---------------------------
+    {
+        name: 'Traje elegante rojo',
+        price: 3200,
+        image: 'img/random1.jpg',
+        type: "Others",
+        description: ""
+    },
+    {
+        name: 'Pantalón aesthetic',
+        price: 1200,
+        image: 'img/random2.jpg',
+        type: "Others",
+        description: ""
+    },
+    {
+        name: 'Tacones fantasía',
+        price: 2000,
+        image: 'img/random3.webp',
+        type: "Others",
+        description: ""
+    },
+    {
+        name: 'Suéter amarillo',
+        price: 1500,
+        image: 'img/random4.webp',
+        type: "Others",
+        description: ""
+    },
+    {
+        name: 'Vestido morado de gala',
+        price: 300,
+        image: 'img/random5.jpg',
+        type: "Others",
+        description: ""
+    },
+    {
+        name: 'Vestido morado de gala',
+        price: 300,
+        image: 'img/random6.jpg',
+        type: "Others",
+        description: ""
+    },
+]
 
-    // const product_card_img = document.querySelectorAll("div.product-card img")
+console.log(productList)
 
-    // Hacer visible el ProductDetail y mostrar datos
-    productImg.addEventListener("click", VisibleProductDetail);
+renderProductList(productList)
 
-
-    // creo los elementos restantes
-    const product_info = document.createElement("div")
-    product_info.classList.add("product-info")
-    
-    const product_div = document.createElement("div")
-    
-    const productPrice = document.createElement("p")
-    productPrice.innerText = "$ " + product.price
-    const productName = document.createElement("p")
-    productName.innerText = product.name
-    
-    const productFigure = document.createElement("figure")
-    
-    const cartImg = document.createElement("img")
-    cartImg.setAttribute("src", "./icons/bt_add_to_cart.svg")
-    
-    // Aumentar el contador del carrito
-    cartImg.addEventListener("click", () => {increaseCounter(element)})
-    // Agregar el producto al carrito
-
-
-
-    // Creo HTML
-    cards_container.appendChild(product_card);
-    product_card.append(productImg, product_info);
-    product_info.append(product_div, productFigure);
-    product_div.append(productPrice, productName);
-    productFigure.append(cartImg); 
-    
-}
 
 //crea los productos en el menu
+// renderProductList()
+// function renderProductList(){
+//     let html = ""
 
-
-// const showProductsOnScreen = (productList)=>{ 
-    
-//     productList.forEach(product => { //recorre cada elemento del arreglo
-
-//         const cards_container = document.querySelector(".cards-container")
-
-//         const product_card = document.createElement("div")
-//         product_card.classList.add("product-card")
-
-//         // product_card.addEventListener('click', ()=>{openProductInfo(product)})
-        
-//         const productImg = document.createElement("img")
-//         productImg.setAttribute("src", product.image)
-    
-//         // const product_card_img = document.querySelectorAll("div.product-card img")
-    
-//         // Hacer visible el ProductDetail y mostrar datos
-//         // productImg.addEventListener("click", VisibleProductDetail);
-    
-    
-//         // creo los elementos restantes
-//         const product_info = document.createElement("div")
-//         product_info.classList.add("product-info")
-        
-//         const product_div = document.createElement("div")
-        
-//         const productPrice = document.createElement("p")
-//         productPrice.innerText = "$ " + product.price
-//         const productName = document.createElement("p")
-//         productName.innerText = product.name
-        
-//         const productFigure = document.createElement("figure")
-        
-//         const cartImg = document.createElement("img")
-//         cartImg.setAttribute("src", "./icons/bt_add_to_cart.svg")
-        
-//         // Aumentar el contador del carrito
-//         // cartImg.addEventListener("click", () => {increaseCounter(element)})
-//         // Agregar el producto al carrito
-    
-//         // cartImg.addEventListener('click', ()=>{openProductInfo(product)})
-
-    
-//         // Creo HTML
-//         cards_container.appendChild(product_card);
-//         product_card.append(productImg, product_info);
-//         product_info.append(product_div, productFigure);
-//         product_div.append(productPrice, productName);
-//         productFigure.append(cartImg); 
-
-//         console.log("dsdfdf")
-        
+//     productList.forEach( product => { 
+//         html += `
+//             <div class="product-card">
+//                 <img id="product-img" src="${product.image}" alt="${product.name}">
+//                 <div class="product-info">
+//                     <div>
+//                         <p>$ ${product.price}</p>
+//                         <p>${product.name}</p>
+//                     </div>
+//                     <figure>
+//                         <img src="./icons/bt_add_to_cart.svg" alt="boton del carrito">
+//                     </figure>
+//                 </div>
+//             </div>
+//         `
+//         console.log("Efee")
+//         let productImg = document.querySelector("#product-img")
+//         productImg.addEventListener("click", VisibleProductDetail);
 //     });
+//     const cards_container = document.querySelector(".cards-container")
+//     cards_container.innerHTML = html
+
+    
+//     // const productImg = document.querySelector("#product-img")
+
+//     // Hacer visible el ProductDetail y mostrar datos
+//     // productImg.addEventListener("click", VisibleProductDetail);
 // }
 
 //muestra el aside con la info del producto seleccionado
@@ -316,79 +430,114 @@ for(product of productList){
 
 // --------------------------------------
 
-const section = document.querySelectorAll(".navbar-left ul li a")
-
-section[0].addEventListener("click", function(){
-    console.log("CLICK SECTION")
-    const cards_container = document.querySelector(".cards-container")
+const sectionDesktop = document.querySelectorAll(".navbar-left ul li a")
+const cards_container = document.querySelector(".cards-container")
+sectionDesktop[0].addEventListener("click", function(){
+    desktop_menu.classList.add("invisible")
+    cart_detail.classList.add("invisible")
+    product_detail.classList.add("invisible")
     cards_container.innerHTML = ""
-
-    const clothesSection = [] 
-    for (let index = 0; index < productList.length; index++) {
-        clothesSection[index] = productList[index]        
-    }
+    renderProductList(productList)
+})
+sectionDesktop[1].addEventListener("click", function(){
+    desktop_menu.classList.add("invisible")
+    cart_detail.classList.add("invisible")
+    product_detail.classList.add("invisible")
+    cards_container.innerHTML = ""
+    const clothesSection = productList.filter(product => {
+        return product.type == "Clothes"
+    })
     renderProductList(clothesSection)
 })
-section[1].addEventListener("click", function(){
-    console.log("CLICK SECTION")
-    const cards_container = document.querySelector(".cards-container")
+sectionDesktop[2].addEventListener("click", function(){
+    desktop_menu.classList.add("invisible")
+    cart_detail.classList.add("invisible")
+    product_detail.classList.add("invisible")
     cards_container.innerHTML = ""
-
-    const clothesSection = [] 
-    for (let index = 0; index < 1; index++) {
-        clothesSection[index] = productList[index]        
-    }
-    renderProductList(clothesSection)
+    const tecnologySection = productList.filter(product => {
+        return product.type == "Tecnology"
+    })
+    renderProductList(tecnologySection)
 })
-section[2].addEventListener("click", function(){
-    console.log("CLICK SECTION")
-    const cards_container = document.querySelector(".cards-container")
+sectionDesktop[3].addEventListener("click", function(){
+    desktop_menu.classList.add("invisible")
+    cart_detail.classList.add("invisible")
+    product_detail.classList.add("invisible")
     cards_container.innerHTML = ""
-
-    const clothesSection = [] 
-    for (let index = 0; index < 2; index++) {
-        clothesSection[index] = productList[index]        
-    }
-    renderProductList(clothesSection)
+    const furnituresSection = productList.filter(product => {
+        return product.type == "Furnitures"
+    })
+    renderProductList(furnituresSection)
 })
-section[3].addEventListener("click", function(){
-    console.log("CLICK SECTION")
-    const cards_container = document.querySelector(".cards-container")
+sectionDesktop[4].addEventListener("click", function(){
+    desktop_menu.classList.add("invisible")
+    cart_detail.classList.add("invisible")
+    product_detail.classList.add("invisible")
     cards_container.innerHTML = ""
-
-    const clothesSection = [] 
-    for (let index = 0; index < 3; index++) {
-        clothesSection[index] = productList[index]        
-    }
-    renderProductList(clothesSection)
-})
-section[4].addEventListener("click", function(){
-    console.log("CLICK SECTION")
-    const cards_container = document.querySelector(".cards-container")
-    cards_container.innerHTML = ""
-
-    const clothesSection = [] 
-    for (let index = 0; index < 4; index++) {
-        clothesSection[index] = productList[index]        
-    }
-    renderProductList(clothesSection)
-})
-section[5].addEventListener("click", function(){
-    console.log("CLICK SECTION")
-    const cards_container = document.querySelector(".cards-container")
-    cards_container.innerHTML = ""
-
-    const clothesSection = [] 
-    for (let index = 0; index < 5; index++) {
-        clothesSection[index] = productList[index]        
-    }
-    renderProductList(clothesSection)
+    const OthersSection = productList.filter(product => {
+        return product.type == "Others"
+    })
+    renderProductList(OthersSection)
 })
 
 
+const sectionMobile = document.querySelectorAll(".mobile-menu ul li a")
+sectionMobile[1].addEventListener("click", function(){
+    invisibleMobileMenu()
+    desktop_menu.classList.add("invisible")
+    cart_detail.classList.add("invisible")
+    product_detail.classList.add("invisible")
+    cards_container.innerHTML = ""
+    renderProductList(productList)
+})
+sectionMobile[2].addEventListener("click", function(){
+    invisibleMobileMenu()
+    desktop_menu.classList.add("invisible")
+    cart_detail.classList.add("invisible")
+    product_detail.classList.add("invisible")
+    cards_container.innerHTML = ""
+    const clothesSection = productList.filter(product => {
+        return product.type == "Clothes"
+    })
+    renderProductList(clothesSection)
+})
+sectionMobile[3].addEventListener("click", function(){
+    invisibleMobileMenu()
+    desktop_menu.classList.add("invisible")
+    cart_detail.classList.add("invisible")
+    product_detail.classList.add("invisible")
+    cards_container.innerHTML = ""
+    const tecnologySection = productList.filter(product => {
+        return product.type == "Tecnology"
+    })
+    renderProductList(tecnologySection)
+})
+sectionMobile[4].addEventListener("click", function(){
+    invisibleMobileMenu()
+    desktop_menu.classList.add("invisible")
+    cart_detail.classList.add("invisible")
+    product_detail.classList.add("invisible")
+    cards_container.innerHTML = ""
+    const furnituresSection = productList.filter(product => {
+        return product.type == "Furnitures"
+    })
+    renderProductList(furnituresSection)
+})
+sectionMobile[5].addEventListener("click", function(){
+    invisibleMobileMenu()
+    desktop_menu.classList.add("invisible")
+    cart_detail.classList.add("invisible")
+    product_detail.classList.add("invisible")
+    cards_container.innerHTML = ""
+    const OthersSection = productList.filter(product => {
+        return product.type == "Others"
+    })
+    renderProductList(OthersSection)
+})
 
-function renderProductList(randomList){
-    for(product of randomList){
+
+function renderProductList(productsList){
+    for(product of productsList){
         const cards_container = document.querySelector(".cards-container")
     
         const product_card = document.createElement("div")
