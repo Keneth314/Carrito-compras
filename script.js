@@ -10,9 +10,12 @@ const close_menu_mobile_img = document.querySelector("div.mobile-menu img")
 const body = document.querySelector("body")
 
 const imgProduct = document.querySelector("#product-detail-img");
+const nameProduct = document.querySelector("#product-detail-name");
 const priceProduct = document.querySelector("#product-detail-price");
+const contentProduct = document.querySelector("#product-detail-content");
 
 const numberCart = document.querySelector(".navbar-shopping-cart div")
+const products_shopping_cart = document.querySelector("#container-shopping-cart")
 
 navbar_email.addEventListener("click", function(){VisibleDesktopMenu()})
 burger_img.addEventListener("click", toggleVisibleMobileMenu)
@@ -75,9 +78,24 @@ function VisibleProductDetail(event){
     desktop_menu.classList.add("invisible")
     cart_detail.classList.add("invisible")
     mobile_menu.classList.add("invisible")
+    
+    const productInfo = event.target.nextElementSibling
 
     imgProduct.setAttribute("src", event.target.src);
-    priceProduct.innerText = event.target.nextElementSibling.innerText; 
+    priceProduct.innerText = productInfo.querySelector("div p:nth-child(1)").innerText
+    nameProduct.innerText = productInfo.querySelector("div p:nth-child(2)").innerText
+
+    
+    let selectedProduct = productList.find( function(product){
+        return (product.name === nameProduct.innerText)
+    })
+
+    if(!selectedProduct.description){
+        selectedProduct.description = "Lo siento aún no tenemos su descripción :("
+    }
+
+    contentProduct.innerText = selectedProduct.description
+
     product_detail.classList.remove("invisible")
 }
 
@@ -87,10 +105,109 @@ function closeProductDetail(){
 }
 
 function increaseCounter(event){
+    
+    const div = event.target.parentElement.closest("div")
+    
+
+    const price = div.querySelector("div p:nth-child(1)").innerText
+    const name = div.querySelector("div p:nth-child(2)").innerText
+    // console.log(div)
+    const img = div.parentElement.querySelector("img").src
+
+    let html = `
+        <div class="shopping-cart">
+            <figure>
+                <img src="${img}" alt="bike">
+            </figure>
+            <p>${name}</p>
+            <p id="productPrice">${price}</p>
+            <img src="./icons/icon_close.png" alt="close" id="delete-img">
+        </div>
+    `
+    products_shopping_cart.innerHTML += html
+
+
+    // const div = document.createElement("div")
+    // div.classList.add("shopping-cart")
+
+    // const figure = document.createElement("figure")
+    // const productImg = document.createElement("img")
+    // // productImg.src = ""
+    // productImg.setAttribute("src", "https://images.pexels.com/photos/276517/pexels-photo-276517.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940")
+
+    // const productName = document.createElement("p")
+    // productName.innerText = "dsdsdsd"
+    // const productPrice = document.createElement("p")
+    // productPrice.innerText = "dsds"
+    // const closeImg = document.createElement("img")
+    // closeImg.src = "./icons/icon_close.png"
+    // console.log(products_shopping_cart)
+    // products_shopping_cart.appendChild(div)
+    // figure.appendChild(imgProduct)
+    // div.append(figure, productName, productPrice, closeImg)
+    
+
     numberCart.innerText = Number(numberCart.innerText) + 1
-    console.log(event.target.tagName + "uwu")
+    // console.log(event.target.type + "uwu")
+
+    const delete_product_img = document.querySelectorAll(".shopping-cart #delete-img")
+    // console.log("🚀 ~ file: script.js:156 ~ increaseCounter ~ delete_product_img", delete_product_img)
+
+    deleteProduct(delete_product_img)
+
+    const cantidad = document.querySelectorAll("#productPrice")
+    
+    sumProducts(cantidad)
+    // console.log(products_shopping_cart.childElementCount)
+    messageEmptyCart()
+}
+function sumProducts(cantidad){
+    let sum = 0
+    cantidad.forEach(precio => {
+        let aux = Number(precio.innerText.replace("$ ", ""))
+        sum += aux
+    })
+
+    const total = document.querySelector("#total")
+    total.innerText = "$ " + sum
 
 }
+function deleteProduct(array){
+    array.forEach(elemento => {
+        elemento.addEventListener("click", function(event){
+            const uwu = event.target
+            const container = uwu.parentElement
+            container.remove()
+            // console.log("🚀 ~ file: script.js:169 ~ elemento.addEventListener ~ container", container)
+            // console.log("🚀 ~ file: script.js:168 ~ elemento.addEventListener ~ uwu", uwu)
+            const cantidad = document.querySelectorAll("#productPrice")
+            // console.log("🚀 ~ file: script.js:184 ~ deleteProduct ~ cantidad", cantidad)
+            numberCart.innerText = Number(numberCart.innerText) - 1
+            sumProducts(cantidad)
+            messageEmptyCart()
+        })
+        
+    })
+
+
+}
+function messageEmptyCart(){
+    let products = products_shopping_cart.querySelectorAll("div.shopping-cart")
+    console.log(products.length)
+    if(products.length >= 1){
+        products_shopping_cart.querySelector(".message-no-cart").classList.add("invisible")
+        products_shopping_cart.classList.remove("layout-initial")
+        products_shopping_cart.classList.add("layout-img-cart")
+        
+    }
+    else{
+        products_shopping_cart.classList.remove("layout-img-cart")
+        products_shopping_cart.classList.add("layout-initial")
+        products_shopping_cart.querySelector(".message-no-cart").classList.remove("invisible")
+
+    }
+}
+
 
 
 
@@ -370,10 +487,10 @@ const productList = [
     },
 ]
 
-console.log(productList)
+// console.log(productList)
 
 renderProductList(productList)
-
+messageEmptyCart()
 
 //crea los productos en el menu
 // renderProductList()
@@ -536,6 +653,7 @@ sectionMobile[5].addEventListener("click", function(){
 })
 
 
+// Renderizado
 function renderProductList(productsList){
     for(product of productsList){
         const cards_container = document.querySelector(".cards-container")
@@ -569,7 +687,7 @@ function renderProductList(productsList){
         cartImg.setAttribute("src", "./icons/bt_add_to_cart.svg")
         
         // Aumentar el contador del carrito
-        cartImg.addEventListener("click", () => {increaseCounter(element)})
+        cartImg.addEventListener("click", increaseCounter)
         // Agregar el producto al carrito
     
     
@@ -583,3 +701,20 @@ function renderProductList(productsList){
         
     }
 }
+
+
+const imgProductList = document.querySelectorAll(".product-card > img")
+// console.log(imgProductList)
+imgProductList.forEach(img => {
+    img.addEventListener("click", function(){
+        numberCart.innerText = Number(numberCart.innerText) + 1
+    })
+})
+
+
+
+/*
+    Posibles mejoras:
+    - 
+
+*/

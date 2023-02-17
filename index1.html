@@ -104,7 +104,7 @@
             <li class="navbar-email">platzi@example.com</li>
             <li class="navbar-shopping-cart">
               <img src="./icons/icon_shopping_cart.svg" alt="shopping cart">
-              <div>2</div>
+              <div>0</div>
             </li>
           </ul>
         </div>
@@ -124,6 +124,8 @@
             </li>
           </ul>
         </div>
+
+        
   
         <aside class="cart-detail invisible">
           <div class="title-container">
@@ -133,69 +135,19 @@
         
           <div class="my-order-content">
   
-            <div class="container-shopping-cart">
-              <div class="shopping-cart">
+            <div id="container-shopping-cart" class="layout-initial">
+
+              <div class="message-no-cart">
+                <img src="icons/noshop.svg" alt="">
+              </div>
+              <!-- <div class="shopping-cart">
                 <figure>
                   <img src="https://images.pexels.com/photos/276517/pexels-photo-276517.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="bike">
                 </figure>
                 <p>Bike</p>
                 <p>$30,00</p>
                 <img src="./icons/icon_close.png" alt="close">
-              </div>
-          
-              <div class="shopping-cart">
-                <figure>
-                  <img src="https://images.pexels.com/photos/276517/pexels-photo-276517.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="bike">
-                </figure>
-                <p>Bike</p>
-                <p>$30,00</p>
-                <img src="./icons/icon_close.png" alt="close">
-              </div>
-          
-              <div class="shopping-cart">
-                <figure>
-                  <img src="https://images.pexels.com/photos/276517/pexels-photo-276517.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="bike">
-                </figure>
-                <p>Bike</p>
-                <p>$30,00</p>
-                <img src="./icons/icon_close.png" alt="close">
-              </div>
-          
-              <div class="shopping-cart">
-                <figure>
-                  <img src="https://images.pexels.com/photos/276517/pexels-photo-276517.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="bike">
-                </figure>
-                <p>Bike</p>
-                <p>$30,00</p>
-                <img src="./icons/icon_close.png" alt="close">
-              </div>
-          
-              <div class="shopping-cart">
-                <figure>
-                  <img src="https://images.pexels.com/photos/276517/pexels-photo-276517.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="bike">
-                </figure>
-                <p>Bike</p>
-                <p>$30,00</p>
-                <img src="./icons/icon_close.png" alt="close">
-              </div>
-          
-              <div class="shopping-cart">
-                <figure>
-                  <img src="https://images.pexels.com/photos/276517/pexels-photo-276517.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="bike">
-                </figure>
-                <p>Bike</p>
-                <p>$30,00</p>
-                <img src="./icons/icon_close.png" alt="close">
-              </div>
-          
-              <div class="shopping-cart">
-                <figure>
-                  <img src="https://images.pexels.com/photos/276517/pexels-photo-276517.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="bike">
-                </figure>
-                <p>Bike</p>
-                <p>$30,00</p>
-                <img src="./icons/icon_close.png" alt="close">
-              </div>
+              </div> -->
             </div>
             
         
@@ -203,7 +155,7 @@
               <p>
                 <span>Total</span>
               </p>
-              <p>$560.00</p>
+              <p id="total">$0</p>
             </div>
         
             <button class="primary-button">
@@ -245,24 +197,13 @@
       <div class="product-info product-info-detail">
         <p id="product-detail-price">$35,00</p>
         <p id="product-detail-name">Bike</p>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur, labore.</p>
+        <p id="product-detail-content">Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur, labore.</p>
         <button class="primary-button add-to-cart-button">
           <img src="./icons/bt_add_to_cart.svg" alt="add to cart">
           Add to cart
         </button>
       </div>
     </aside>
-    
-
-    <!-- 
-      Cosas a arreglar:
-       Hacer que el cart detail en desktop no sea por defecto invisible
-
-      Falta:
-      - Agregar productos al carrito
-      - Eliminar productos del carrito
-      
-     -->
 
     <script src="script.js"></script>
   </body>
