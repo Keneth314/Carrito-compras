@@ -59,24 +59,17 @@ function toggleVisibleCartDetail() {
   mobile_menu.classList.add("invisible")
 
   if (screen.width <= 768) {
-    cart_detail.classList.remove("invisible")
-    // function uwu(){
-    // }
-    // setTimeout(uwu, 200)
-    // body.classList.toggle("no-scroll")
+    cart_detail.classList.toggle("invisible")
     cart_detail.classList.toggle("cart-detail_show")
-    // (body.classList.contains("no-scroll") === false) ? body.classList.add("no-scroll") : body.classList.remove("no-scroll");
   }
   else {
     mobile_menu.classList.add("invisible")
     cart_detail.classList.remove("cart-detail_show")
     cart_detail.classList.toggle("invisible")
   }
-  // console.log(screen.width)
 }
 
 function VisibleProductDetail(event) {
-
   desktop_menu.classList.add("invisible")
   cart_detail.classList.add("invisible")
   mobile_menu.classList.add("invisible")
@@ -86,7 +79,6 @@ function VisibleProductDetail(event) {
   imgProduct.setAttribute("src", event.target.src);
   priceProduct.innerText = productInfo.querySelector("div p:nth-child(1)").innerText
   nameProduct.innerText = productInfo.querySelector("div p:nth-child(2)").innerText
-
 
   let selectedProduct = productList.find(function (product) {
     return (product.name === nameProduct.innerText)
@@ -156,10 +148,7 @@ function deleteProduct(array) {
       const uwu = event.target
       const container = uwu.parentElement
       container.remove()
-      // console.log("🚀 ~ file: script.js:169 ~ elemento.addEventListener ~ container", container)
-      // console.log("🚀 ~ file: script.js:168 ~ elemento.addEventListener ~ uwu", uwu)
       const cantidad = document.querySelectorAll("#productPrice")
-      // console.log("🚀 ~ file: script.js:184 ~ deleteProduct ~ cantidad", cantidad)
       numberCart.innerText = Number(numberCart.innerText) - 1
       sumProducts(cantidad)
       messageEmptyCart()
@@ -168,12 +157,15 @@ function deleteProduct(array) {
 }
 function messageEmptyCart() {
   let products = products_shopping_cart.querySelectorAll("div.shopping-cart")
-  console.log(products.length)
+
   if (products.length >= 1) {
     products_shopping_cart.querySelector(".message-no-cart").classList.add("invisible")
     products_shopping_cart.classList.remove("layout-initial")
     if(products.length > 3){
       products_shopping_cart.classList.add("layout-img-cart")
+    }
+    else{
+      products_shopping_cart.classList.remove("layout-img-cart")
     }
   }
   else {
@@ -186,11 +178,11 @@ function messageEmptyCart() {
 // Creando la lista de productos
 const productList = [
   {
-    name: 'Película Mi vecino Totoro ',
+    name: 'Película Mi vecino Totoro',
     price: 10.99,
     image: 'img/random6.jpg',
-    description: 'Mi vecino Totoro es una película animada clásica de Studio Ghibli. Esta película presenta una historia conmovedora y personajes adorables que seguro que te robarán el corazón. Si eres fanático del anime o las películas animadas, esta película es imprescindible en tu colección.',
-    type: 'Others'
+    type: 'Others',
+    description: 'Mi vecino Totoro es una película animada clásica de Studio Ghibli. Esta película presenta una historia conmovedora y personajes adorables que seguro que te robarán el corazón. Si eres fanático del anime o las películas animadas, esta película es imprescindible en tu colección.'
   },
   {
     name: 'Headphones Beats Studio Rosa',
@@ -271,7 +263,7 @@ const productList = [
   },
   {
     name: 'Samsung Galaxy S20',
-    price: 900.99,
+    price: 500.99,
     image: 'img/tecnologia5.jpg',
     type: 'Tecnology',
     description: 'Este smartphone Samsung Galaxy S20 cuenta con una pantalla Dynamic AMOLED de 6.2 pulgadas, una cámara trasera triple de 64 MP + 12 MP + 12 MP y una cámara frontal de 10 MP. También cuenta con una batería de 4000 mAh y 128 GB de almacenamiento interno.'
@@ -655,19 +647,24 @@ const productList = [
     description: 'Este smartphone iPhone 5 tiene una pantalla de 4 pulgadas, una cámara trasera de 8 MP y una cámara frontal de 1.2 MP. Viene con el sistema operativo iOS 6 y tiene 16 GB de almacenamiento interno.'
   }
 ]
-
 // console.log(productList)
 
 // Renderizo el HTML de los productos y cambio la imagen de carrito vacío
 renderProductList(productList)
 messageEmptyCart()
 
+// Lógica de la navegación de secciones
+const sectionDesktop = document.querySelectorAll(".navbar-left ul li a")
+const sectionMobile = document.querySelectorAll(".mobile-menu ul li a")
+const cards_container = document.querySelector(".cards-container")
+
 function showSectionProducts(sectionElement, sectionName) {
   sectionElement.addEventListener("click", function(){
-
     desktop_menu.classList.add("invisible")
+    mobile_menu.classList.add("invisible")
     cart_detail.classList.add("invisible")
     product_detail.classList.add("invisible")
+
     cards_container.innerHTML = ""  
 
     // Creamos un array filtrado en base del nombre de la seccion
@@ -683,71 +680,17 @@ function showSectionProducts(sectionElement, sectionName) {
   })
 }
 
-// Lógica de la navegación de secciones
-const sectionDesktop = document.querySelectorAll(".navbar-left ul li a")
-const cards_container = document.querySelector(".cards-container")
-
 showSectionProducts(sectionDesktop[0], "All")
 showSectionProducts(sectionDesktop[1], "Clothes")
 showSectionProducts(sectionDesktop[2], "Tecnology")
 showSectionProducts(sectionDesktop[3], "Furnitures")
 showSectionProducts(sectionDesktop[4], "Others")
 
-
-
-const sectionMobile = document.querySelectorAll(".mobile-menu ul li a")
-sectionMobile[1].addEventListener("click", function () {
-  invisibleMobileMenu()
-  desktop_menu.classList.add("invisible")
-  cart_detail.classList.add("invisible")
-  product_detail.classList.add("invisible")
-  cards_container.innerHTML = ""
-  renderProductList(productList)
-})
-sectionMobile[2].addEventListener("click", function () {
-  invisibleMobileMenu()
-  desktop_menu.classList.add("invisible")
-  cart_detail.classList.add("invisible")
-  product_detail.classList.add("invisible")
-  cards_container.innerHTML = ""
-  const clothesSection = productList.filter(product => {
-    return product.type == "Clothes"
-  })
-  renderProductList(clothesSection)
-})
-sectionMobile[3].addEventListener("click", function () {
-  invisibleMobileMenu()
-  desktop_menu.classList.add("invisible")
-  cart_detail.classList.add("invisible")
-  product_detail.classList.add("invisible")
-  cards_container.innerHTML = ""
-  const tecnologySection = productList.filter(product => {
-    return product.type == "Tecnology"
-  })
-  renderProductList(tecnologySection)
-})
-sectionMobile[4].addEventListener("click", function () {
-  invisibleMobileMenu()
-  desktop_menu.classList.add("invisible")
-  cart_detail.classList.add("invisible")
-  product_detail.classList.add("invisible")
-  cards_container.innerHTML = ""
-  const furnituresSection = productList.filter(product => {
-    return product.type == "Furnitures"
-  })
-  renderProductList(furnituresSection)
-})
-sectionMobile[5].addEventListener("click", function () {
-  invisibleMobileMenu()
-  desktop_menu.classList.add("invisible")
-  cart_detail.classList.add("invisible")
-  product_detail.classList.add("invisible")
-  cards_container.innerHTML = ""
-  const OthersSection = productList.filter(product => {
-    return product.type == "Others"
-  })
-  renderProductList(OthersSection)
-})
+showSectionProducts(sectionMobile[1], "All")
+showSectionProducts(sectionMobile[2], "Clothes")
+showSectionProducts(sectionMobile[3], "Tecnology")
+showSectionProducts(sectionMobile[4], "Furnitures")
+showSectionProducts(sectionMobile[5], "Others")
 
 
 // Renderizado
@@ -800,18 +743,4 @@ function renderProductList(productsList) {
 }
 
 
-const imgProductList = document.querySelectorAll(".product-card > img")
-// console.log(imgProductList)
-imgProductList.forEach(img => {
-  img.addEventListener("click", function () {
-    numberCart.innerText = Number(numberCart.innerText) + 1
-  })
-})
 
-
-
-/*
-    Posibles mejoras:
-    - 
-
-*/
