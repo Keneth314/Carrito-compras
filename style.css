@@ -213,6 +213,11 @@ body {
     margin-bottom: 24px;
 }
 
+#my-orders-desktop{
+    cursor: pointer;
+    user-select: none;
+}
+
 .email {
     font-size: var(--sm);
     font-weight: 300 !important;
@@ -254,6 +259,7 @@ body {
 
 #container-shopping-cart{
     height: 50vh;
+    user-select: none;
 }
 
 .order {
