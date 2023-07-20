@@ -3,8 +3,7 @@ const desktop_menu = document.querySelector("div.desktop-menu")
 const burger_img = document.querySelector("img.menu")
 const mobile_menu = document.querySelector("div.mobile-menu")
 const car_img = document.querySelector("li.navbar-shopping-cart")
-const myOrdersMobile = document.querySelector("#my-orders-mobile")
-const myOrdersDesktop = document.querySelector("#my-orders-desktop")
+const myOrders = document.querySelector("#my-orders")
 const cart_detail = document.querySelector("aside.cart-detail")
 const product_detail = document.querySelector("aside.product-detail")
 const close_img = document.querySelector(".product-detail-close")
@@ -22,8 +21,7 @@ const products_shopping_cart = document.querySelector("#container-shopping-cart"
 navbar_email.addEventListener("click", function () { VisibleDesktopMenu() })
 burger_img.addEventListener("click", toggleVisibleMobileMenu)
 car_img.addEventListener("click", function () { toggleVisibleCartDetail() })
-myOrdersMobile.addEventListener("click", function () { toggleVisibleCartDetail() })
-myOrdersDesktop.addEventListener("click", function () { toggleVisibleCartDetail() })
+myOrders.addEventListener("click", function () { toggleVisibleCartDetail() })
 close_img.addEventListener("click", closeProductDetail)
 close_menu_mobile_img.addEventListener("click", invisibleMobileMenu)
 
@@ -61,7 +59,6 @@ function toggleVisibleCartDetail() {
   mobile_menu.classList.add("invisible")
 
   if (screen.width <= 768) {
-    body.classList.remove("no-scroll")
     cart_detail.classList.toggle("invisible")
     cart_detail.classList.toggle("cart-detail_show")
   }
@@ -667,7 +664,6 @@ function showSectionProducts(sectionElement, sectionName) {
     mobile_menu.classList.add("invisible")
     cart_detail.classList.add("invisible")
     product_detail.classList.add("invisible")
-    body.classList.remove("no-scroll")
 
     cards_container.innerHTML = ""  
 
